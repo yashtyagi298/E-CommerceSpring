@@ -34,6 +34,10 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java
 	implementation 'io.github.cdimascio:dotenv-java:3.2.0'
+	// https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+	// https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
+	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
 
 tasks.named('test') {
