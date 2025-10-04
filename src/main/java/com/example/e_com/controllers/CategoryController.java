@@ -2,6 +2,7 @@ package com.example.e_com.controllers;
 
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.services.ICategoryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,8 @@ public class CategoryController {
         this.iCategoryService = _iCategoryService;
     }
     @GetMapping
-    public List<CategoryDTO> getAllCategories() throws IOException {
-       return this.iCategoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
+       List<CategoryDTO> result =  this.iCategoryService.getAllCategories();
+           return ResponseEntity.ok(result);
     }
 }
