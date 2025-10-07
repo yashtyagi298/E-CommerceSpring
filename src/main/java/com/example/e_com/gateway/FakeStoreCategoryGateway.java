@@ -3,6 +3,7 @@ package com.example.e_com.gateway;
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.dtos.ProductDto;
 import com.example.e_com.gateway.Api.FakeStoreApi;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Primary
 public class FakeStoreCategoryGateway implements ICategoryGateway {
       private final FakeStoreApi fakestoreapi;
 

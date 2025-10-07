@@ -5,6 +5,7 @@ import com.example.e_com.gateway.Api.FakeStoreProductApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,5 +29,10 @@ public class RetrofitConfig {
     @Bean
     public FakeStoreProductApi fakeStoreProductApi(Retrofit retrofit){
         return retrofit.create(FakeStoreProductApi.class);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
 }
