@@ -1,11 +1,14 @@
 package com.example.e_com.services;
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.gateway.ICategoryGateway;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
-@Service
+@Primary
+@Service("FakeStoreCategoryService")
+
 public class FakeStoreCategoryService implements ICategoryService {
   private final ICategoryGateway iCategoryGateway;
 

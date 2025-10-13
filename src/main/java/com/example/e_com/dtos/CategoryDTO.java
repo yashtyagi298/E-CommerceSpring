@@ -10,5 +10,6 @@ import lombok.*;
 public class CategoryDTO {
 
     private String title;
+    private double price;
 
 }

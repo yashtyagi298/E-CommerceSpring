@@ -2,6 +2,7 @@ package com.example.e_com.controllers;
 
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.services.ICategoryService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +18,7 @@ import java.util.List;
 public class CategoryController {
     private final ICategoryService iCategoryService;
 
-    CategoryController(ICategoryService  _iCategoryService){
+    CategoryController(@Qualifier("FakeStoreCategoryService") ICategoryService  _iCategoryService){
         this.iCategoryService = _iCategoryService;
     }
     @GetMapping

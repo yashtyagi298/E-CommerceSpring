@@ -2,6 +2,7 @@ package com.example.e_com.services;
 
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.dtos.OneProductDTO;
+import com.example.e_com.dtos.ProductDto;
 import com.example.e_com.gateway.Api.FakeStoreProductApi;
 import com.example.e_com.gateway.FakeStoreProductGateway;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,10 @@ public class OneProductServiceFakeStore implements IOneProductService{
     @Override
     public OneProductDTO getOneProduct(Long id) throws IOException {
         return fakeStoreProductGateway.getProductById(id);
+    }
+
+    @Override
+    public ProductDto createProduct(ProductDto dto) {
+        return null;
     }
 }
