@@ -8,8 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class CategoryDTO {
-
-    private String title;
-    private double price;
+    private long id;
+    private String name;
 
 }

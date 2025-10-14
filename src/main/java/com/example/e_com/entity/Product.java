@@ -1,7 +1,10 @@
 package com.example.e_com.entity;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -11,10 +14,13 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Product extends BaseEntity {
-    private long id;
-    private String title;
+//    private long id;
+    private String name;
     private double price;
     private String description;
-    private String category;
     private String image;
+
+    @ManyToOne
+    @JoinColumn(name="categoryId" , nullable = false)
+    private Category category;
 }

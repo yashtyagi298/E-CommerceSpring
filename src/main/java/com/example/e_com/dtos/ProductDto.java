@@ -11,10 +11,10 @@ import java.util.List;
 @Builder
 public class ProductDto {
     private long id;
-    private String title;
+    private String name;
     private double price;
     private String description;
-    private String category;
+    private long categoryId;
     private String image;
 
 

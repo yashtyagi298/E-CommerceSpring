@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface IOneProductService  {
     OneProductDTO getOneProduct(Long id) throws Exception;
-    ProductDto createProduct(ProductDto dto);
+    ProductDto createProduct(ProductDto dto) throws Exception;
 }

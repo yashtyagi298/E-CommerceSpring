@@ -23,10 +23,10 @@ public class FakeStoreProductGateway implements IGetProduct {
            throw new IOException("Product can not be fetch by retrofit");
        }
       return  OneProductDTO.builder()
-              .title(product.getTitle())
+              .title(product.getName())
               .price(product.getPrice())
               .description(product.getDescription())
-              .category(product.getCategory())
+              .categoryId(product.getCategoryId())
               .build();
     }
 }

@@ -26,8 +26,8 @@ public class FakeStoreCategoryGateway implements ICategoryGateway {
         }
         return products.stream()
                 .map(product -> CategoryDTO.builder()
-                        .title(product.getTitle())
-                        .price(product.getPrice())
+                        .name(product.getName())
+                        .id(product.getId())
                         .build())
                 .collect(Collectors.toList());
     }

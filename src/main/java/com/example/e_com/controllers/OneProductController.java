@@ -21,11 +21,12 @@ public class OneProductController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllProduct() throws IOException {
-                List<CategoryDTO> prod = productService.getAllCategories();
-                return ResponseEntity.ok(prod);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<CategoryDTO>> getAllProduct() throws IOException {
+////                List<CategoryDTO> prod = productService.getAllCategories();
+////                return ResponseEntity.ok(prod);
+//        return null;
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<OneProductDTO> getOneProductbyId(@PathVariable Long id) throws Exception {
@@ -34,7 +35,7 @@ public class OneProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto dto){
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto dto) throws Exception {
          return ResponseEntity.ok(productService.createProduct(dto));
     }
 

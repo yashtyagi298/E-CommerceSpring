@@ -3,12 +3,9 @@ package com.example.e_com.controllers;
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,14 +13,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
+//    private final ICategoryService iCategoryService;
+//
+//    CategoryController(@Qualifier("FakeStoreCategoryService") ICategoryService  _iCategoryService){
+//        this.iCategoryService = _iCategoryService;
+//    }
+
     private final ICategoryService iCategoryService;
 
-    CategoryController(@Qualifier("FakeStoreCategoryService") ICategoryService  _iCategoryService){
-        this.iCategoryService = _iCategoryService;
+    public CategoryController(@Qualifier("CategoryService") ICategoryService iCategoryService) {
+        this.iCategoryService = iCategoryService;
     }
+
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
-       List<CategoryDTO> result =  this.iCategoryService.getAllCategories();
-           return ResponseEntity.ok(result);
+    public ResponseEntity<?> getAllCategories(@RequestParam(required = false) String name) throws Exception {
+        if (name != null && !name.isBlank()) {
+            return ResponseEntity.ok(iCategoryService.getCategoryByName(name));
+        } else {
+            return ResponseEntity.ok(iCategoryService.getAllCategories());
+        }
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<CategoryDTO> getCategoryByName(@PathVariable String name) throws Exception {
+        return ResponseEntity.ok(iCategoryService.getCategoryByName(name));
+    }
+
+    @PostMapping
+    public ResponseEntity< CategoryDTO> createCategory(@RequestBody CategoryDTO dto) throws IOException {
+       return ResponseEntity.ok(iCategoryService.createCategory(dto));
     }
 }
