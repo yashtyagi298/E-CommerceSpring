@@ -1,10 +1,7 @@
 package com.example.e_com.entity;
 
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -20,7 +17,7 @@ public class Product extends BaseEntity {
     private String description;
     private String image;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="categoryId" , nullable = false)
     private Category category;
 }

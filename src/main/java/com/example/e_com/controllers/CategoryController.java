@@ -1,6 +1,7 @@
 package com.example.e_com.controllers;
 
 import com.example.e_com.dtos.CategoryDTO;
+import com.example.e_com.dtos.CategoryWithProductDto;
 import com.example.e_com.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +38,12 @@ public class CategoryController {
     @GetMapping("/{name}")
     public ResponseEntity<CategoryDTO> getCategoryByName(@PathVariable String name) throws Exception {
         return ResponseEntity.ok(iCategoryService.getCategoryByName(name));
+    }
+
+
+    @GetMapping("/{id}/products")
+    public ResponseEntity <CategoryWithProductDto> getCategoryWithProduct(@PathVariable long id) throws Exception{
+        return ResponseEntity.ok(iCategoryService.getCategoryWithProduct(id ));
     }
 
     @PostMapping

@@ -3,6 +3,7 @@ package com.example.e_com.services;
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.dtos.OneProductDTO;
 import com.example.e_com.dtos.ProductDto;
+import com.example.e_com.dtos.ProductWithCategoryDto;
 import com.example.e_com.entity.Category;
 import com.example.e_com.entity.Product;
 import com.example.e_com.mappers.ProductMapper;
@@ -41,6 +42,12 @@ public class ProductService implements IOneProductService {
        return ProductMapper.toDto(save);
     }
 
+    @Override
+    public ProductWithCategoryDto getProductWithCategory(long id) throws Exception {
+            Product product = repo.findById(id)
+                    .orElseThrow(()->new Exception("Product not found"));
+            return ProductMapper.toProductWithCategoryDto(product);
+    }
 
 
 //    @Override

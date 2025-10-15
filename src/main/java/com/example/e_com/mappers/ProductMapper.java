@@ -2,6 +2,7 @@ package com.example.e_com.mappers;
 
 import com.example.e_com.dtos.OneProductDTO;
 import com.example.e_com.dtos.ProductDto;
+import com.example.e_com.dtos.ProductWithCategoryDto;
 import com.example.e_com.entity.Category;
 import com.example.e_com.entity.Product;
 
@@ -36,6 +37,16 @@ public class ProductMapper {
                 .price(product.getPrice())
                 .description(product.getDescription())
                 .categoryId(product.getCategory().getId())
+                .build();
+    }
+
+    public static ProductWithCategoryDto toProductWithCategoryDto (Product product){
+        return ProductWithCategoryDto.builder()
+                .name(product.getName())
+                .price(product.getPrice())
+                .description(product.getDescription())
+                .image(product.getImage())
+                .category(CategoryMapper.toDto(product.getCategory()))
                 .build();
     }
 }

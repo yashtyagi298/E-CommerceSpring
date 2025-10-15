@@ -3,6 +3,7 @@ package com.example.e_com.controllers;
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.dtos.OneProductDTO;
 import com.example.e_com.dtos.ProductDto;
+import com.example.e_com.dtos.ProductWithCategoryDto;
 import com.example.e_com.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -39,4 +40,8 @@ public class OneProductController {
          return ResponseEntity.ok(productService.createProduct(dto));
     }
 
+    @GetMapping("/{id}/details")
+    public ResponseEntity<ProductWithCategoryDto> getProductWithCategory(@PathVariable long id) throws Exception{
+        return ResponseEntity.ok(productService.getProductWithCategory(id));
+    }
 }

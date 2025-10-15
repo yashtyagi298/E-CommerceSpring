@@ -1,6 +1,7 @@
 package com.example.e_com.services;
 
 import com.example.e_com.dtos.CategoryDTO;
+import com.example.e_com.dtos.CategoryWithProductDto;
 import com.example.e_com.entity.Category;
 import com.example.e_com.mappers.CategoryMapper;
 import com.example.e_com.repository.CategoryRepository;
@@ -41,5 +42,13 @@ public class CategoryService implements ICategoryService{
     public CategoryDTO getCategoryByName(String name) throws Exception {
           Category find = categoryRepository.findByName(name).orElseThrow(()->new Exception("invalid name"));
           return CategoryMapper.toDto(find);
+    }
+
+    @Override
+    public CategoryWithProductDto getCategoryWithProduct(long id) throws Exception {
+          Category category = categoryRepository.findById(id)
+                  .orElseThrow(()->new Exception("Category not found"));
+          return CategoryMapper.toCategoryWithProductDto(category);
+
     }
 }

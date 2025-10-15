@@ -1,5 +1,6 @@
 package com.example.e_com.services;
 import com.example.e_com.dtos.CategoryDTO;
+import com.example.e_com.dtos.CategoryWithProductDto;
 import com.example.e_com.gateway.ICategoryGateway;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class FakeStoreCategoryService implements ICategoryService {
 
     @Override
     public CategoryDTO getCategoryByName(String name) throws Exception {
+        return null;
+    }
+
+    @Override
+    public CategoryWithProductDto getCategoryWithProduct(long id) throws Exception {
         return null;
     }
 }

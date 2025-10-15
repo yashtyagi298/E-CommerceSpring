@@ -1,6 +1,7 @@
 package com.example.e_com.services;
 
 import com.example.e_com.dtos.CategoryDTO;
+import com.example.e_com.dtos.CategoryWithProductDto;
 import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties;
 import org.springframework.stereotype.Service;
 
@@ -13,4 +14,7 @@ public interface ICategoryService {
     CategoryDTO createCategory(CategoryDTO dto) throws IOException;
 
     CategoryDTO getCategoryByName(String name) throws Exception;
+
+    CategoryWithProductDto getCategoryWithProduct(long id) throws Exception;
+
 }
