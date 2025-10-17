@@ -3,6 +3,7 @@ package com.example.e_com.services;
 import com.example.e_com.dtos.CategoryDTO;
 import com.example.e_com.dtos.CategoryWithProductDto;
 import com.example.e_com.entity.Category;
+import com.example.e_com.exception.CategoryNotFoundException;
 import com.example.e_com.mappers.CategoryMapper;
 import com.example.e_com.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class CategoryService implements ICategoryService{
 
 
     @Override
-    public List<CategoryDTO> getAllCategories() throws IOException {
+    public List<CategoryDTO> getAllCategories()  {
          List<CategoryDTO> categories =  categoryRepository.findAll()
                  .stream()
                  .map(CategoryMapper::toDto)
@@ -32,22 +33,22 @@ public class CategoryService implements ICategoryService{
     }
 
     @Override
-    public  CategoryDTO createCategory(CategoryDTO Cdto ) throws IOException {
+    public  CategoryDTO createCategory(CategoryDTO Cdto )  {
         Category category = CategoryMapper.toEnity(Cdto);
         Category saved = categoryRepository.save(category);
         return CategoryMapper.toDto(saved);
      }
 
     @Override
-    public CategoryDTO getCategoryByName(String name) throws Exception {
-          Category find = categoryRepository.findByName(name).orElseThrow(()->new Exception("invalid name"));
+    public CategoryDTO getCategoryByName(String name)  {
+          Category find = categoryRepository.findByName(name).orElseThrow(()->new CategoryNotFoundException("invalid Category name "));
           return CategoryMapper.toDto(find);
     }
 
     @Override
-    public CategoryWithProductDto getCategoryWithProduct(long id) throws Exception {
+    public CategoryWithProductDto getCategoryWithProduct(long id)  {
           Category category = categoryRepository.findById(id)
-                  .orElseThrow(()->new Exception("Category not found"));
+                  .orElseThrow(()->new CategoryNotFoundException("Category not mapped with any product"));
           return CategoryMapper.toCategoryWithProductDto(category);
 
     }

@@ -6,6 +6,9 @@ import com.example.e_com.dtos.ProductDto;
 import com.example.e_com.dtos.ProductWithCategoryDto;
 import com.example.e_com.entity.Category;
 import com.example.e_com.entity.Product;
+import com.example.e_com.exception.CategoryNotFoundException;
+import com.example.e_com.exception.ProductNotFoundException;
+import com.example.e_com.exception.ProductWithCategoryException;
 import com.example.e_com.mappers.ProductMapper;
 import com.example.e_com.repository.CategoryRepository;
 import com.example.e_com.repository.ProductRepository;
@@ -27,25 +30,25 @@ public class ProductService implements IOneProductService {
 
 
     @Override
-    public OneProductDTO getOneProduct(Long id) throws Exception {
+    public OneProductDTO getOneProduct(Long id) {
         return repo.findById(id)
                 .map(ProductMapper::toOneProduct)
-                .orElseThrow(()->new Exception("Product not found bro"));
+                .orElseThrow(()->new ProductNotFoundException("This Product Id  =  "+id+" Not found "));
     }
 
     @Override
-    public ProductDto createProduct(ProductDto dto) throws Exception {
+    public ProductDto createProduct(ProductDto dto)  {
         Category category = categoryRepository.findById(dto.getCategoryId())
-                .orElseThrow(()-> new Exception("Invlaid Category "));
+                .orElseThrow(()-> new CategoryNotFoundException(" Invalid Category which gives you in product details "));
 
        Product save =  repo.save(ProductMapper.toEntity(dto,category));
        return ProductMapper.toDto(save);
     }
 
     @Override
-    public ProductWithCategoryDto getProductWithCategory(long id) throws Exception {
+    public ProductWithCategoryDto getProductWithCategory(long id)  {
             Product product = repo.findById(id)
-                    .orElseThrow(()->new Exception("Product not found"));
+                    .orElseThrow(()->new ProductWithCategoryException("This Product Id  =  "+id+" Not found "));
             return ProductMapper.toProductWithCategoryDto(product);
     }
 

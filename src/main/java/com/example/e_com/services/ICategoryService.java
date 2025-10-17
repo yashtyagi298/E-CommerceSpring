@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public interface ICategoryService {
-    List<CategoryDTO> getAllCategories() throws IOException;
+    List<CategoryDTO> getAllCategories() throws Exception;
     CategoryDTO createCategory(CategoryDTO dto) throws IOException;
 
     CategoryDTO getCategoryByName(String name) throws Exception;
